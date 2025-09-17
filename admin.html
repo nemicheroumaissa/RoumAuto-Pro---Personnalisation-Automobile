@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - RoumAuto</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    </head>
+<body>
+    <!-- Login Section -->
+    <div id="loginSection" class="login-container">
+        <form class="login-form" id="loginForm">
+            <h2>🔐 Admin Panel</h2>
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Se connecter</button>
+            <div id="loginError"></div>
+        </form>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboardSection" class="dashboard">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">RoumAuto Admin</div>
+                <div class="user-info">
+                    <span>👨‍💼 Admin</span>
+                    <button onclick="logout()" class="btn btn-secondary btn-small">Déconnexion</button>
+                    <a href="index.html" class="btn btn-small">Retour au site</a>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalOrders">0</span>
+                    <div class="stat-label">Total Commandes</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="returningCustomers">0</span>
+                    <div class="stat-label">Clients Fidèles</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalRevenue">0 DZD</span>
+                    <div class="stat-label">Chiffre d'Affaires</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="averageOrder">0 DZD</span>
+                    <div class="stat-label">Panier Moyen</div>
+                </div>
+            </div>
+
+            <!-- Commands Management -->
+            <div class="commands-section">
+                <div class="section-header">
+                    <h3 class="section-title">Gestion des Commandes</h3>
+                    <button onclick="openAddModal()" class="btn btn-success">➕ Nouvelle Commande</button>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                    <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom, téléphone..." onkeyup="filterOrders()">
+                    <select id="serviceFilter" onchange="filterOrders()">
+                        <option value="">Tous les services</option>
+                        <option value="peinture">Peinture Auto</option>
+                        <option value="wrap">Vinyl Wrap</option>
+                        <option value="bodykit">Body Kit</option>
+                        <option value="jantes">Jantes Custom</option>
+                        <option value="vitre">Teinte Vitres</option>
+                        <option value="phares">Teinte Phares</option>
+                        <option value="decals">Décals & Graphiques</option>
+                        <option value="ceramique">Revêtement Céramique</option>
+                        <option value="ppf">PPF</option>
+                    </select>
+                    <select id="discountFilter" onchange="filterOrders()">
+                        <option value="">Tous les clients</option>
+                        <option value="true">Clients fidèles</option>
+                        <option value="false">Nouveaux clients</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Téléphone</th>
+                                <th>Service</th>
+                                <th>Prix de Base</th>
+                                <th>Remise</th>
+                                <th>Prix Final</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be loaded here -->
+                        </tbody>
+                    </table>
+                    <div id="emptyState" class="empty-state" style="display: none;">
+                        <div class="empty-state-icon">📋</div>
+                        <h3>Aucune commande trouvée</h3>
+                        <p>Les commandes apparaîtront ici une fois soumises.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Nouvelle Commande</h3>
+                <button class="close" onclick="closeModal('orderModal')">&times;</button>
+            </div>
+            <form id="orderForm">
+                <input type="hidden" id="editOrderId">
+                <div class="form-group">
+                    <label for="editName">Nom complet *</label>
+                    <input type="text" id="editName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">Téléphone *</label>
+                    <input type="tel" id="editPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editService">Service *</label>
+                    <select id="editService" name="service" required>
+                        <option value="">Choisissez un service</option>
+                        <option value="peinture">Peinture Auto</option>
+                        <option value="wrap">Vinyl Wrap (complet)</option>
+                        <option value="bodykit">Installation Body Kit</option>
+                        <option value="jantes">Personnalisation Jantes</option>
+                        <option value="vitre">Teinte Vitres</option>
+                        <option value="phares">Teinte Phares</option>
+                        <option value="decals">Décals & Graphiques</option>
+                        <option value="ceramique">Revêtement Céramique</option>
+                        <option value="ppf">PPF (pare-chocs avant)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editMessage">Message</label>
+                    <textarea id="editMessage" name="message" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" onclick="closeModal('orderModal')" class="btn btn-secondary">Annuler</button>
+                    <button type="submit" class="btn btn-success">Sauvegarder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirmer la Suppression</h3>
+                <button class="close" onclick="closeModal('deleteModal')">&times;</button>
+            </div>
+            <p>Êtes-vous sûr de vouloir supprimer cette commande ? Cette action est irréversible.</p>
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                <button onclick="closeModal('deleteModal')" class="btn btn-secondary">Annuler</button>
+                <button id="confirmDelete" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
