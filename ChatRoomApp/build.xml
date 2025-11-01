@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ChatRoomApp" default="default" basedir=".">
+    <description>Builds, tests, and runs the Chat Room Application.</description>
+    
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="dist.jar" value="${dist.dir}/ChatRoomApp.jar"/>
+    
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <target name="compile" depends="init" description="Compile the source">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+    
+    <target name="jar" depends="compile" description="Create JAR file">
+        <jar destfile="${dist.jar}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="chatroom.server.ChatServer"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <target name="run-server" depends="compile" description="Run the server">
+        <java classname="chatroom.server.ChatServer" fork="true">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="run-client" depends="compile" description="Run the client">
+        <java classname="chatroom.client.ChatClientGUI" fork="true">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+            </classpath>
+        </java>
+    </target>
+    
+    <target name="clean" description="Clean build files">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <target name="default" depends="compile" description="Default target">
+        <echo message="Chat Room Application compiled successfully!"/>
+    </target>
+</project>
