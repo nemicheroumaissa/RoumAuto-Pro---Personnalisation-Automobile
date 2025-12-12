@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('nav-menu');
     
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
 
         // Close menu when clicking on links
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -175,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function confirmBooking() {
         if (!currentBookingData) return;
 
-        const orders = JSON.parse(localStorage.getItem('autoCustomOrders') || '[]');
+        const orders = JSON.parse(localStorage.getItem('Orders') || '[]');
         const newOrder = {
             id: generateOrderId(),
             ...currentBookingData,
@@ -184,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         orders.push(newOrder);
-        localStorage.setItem('autoCustomOrders', JSON.stringify(orders));
+        localStorage.setItem('Orders', JSON.stringify(orders));
 
         closeModal('price-modal');
         showSuccessModal();
@@ -258,17 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.6s ease-out';
         observer.observe(el);
-    });
-
-    // Gallery hover effects
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'scale(1.02)';
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'scale(1)';
-        });
     });
 
     // Add loading states to form submission
@@ -415,6 +405,32 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     createScrollIndicator();
+
+    // Image Preview
+    const imageInput = document.getElementById('car-image');
+    const imagePreview = document.getElementById('image-preview');
+
+    if (imageInput) {
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Vérifier la taille (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('La taille du fichier ne doit pas dépasser 5MB');
+                    e.target.value = '';
+                    return;
+                }
+                
+                // Afficher la prévisualisation
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
     console.log('AutoCustom Pro - Website Loaded Successfully! 🚗✨');
 });
