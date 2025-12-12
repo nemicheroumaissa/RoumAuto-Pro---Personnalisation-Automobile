@@ -16,12 +16,13 @@
     <h2>RoumAuto Pro</h2>
             </div>
             <div class="nav-menu" id="nav-menu">
-                <a href="#home" class="nav-link">Accueil</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#pricing" class="nav-link">Tarifs</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+    <a href="#home" class="nav-link">Accueil</a>
+    <a href="#gallery" class="nav-link">Galerie</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#pricing" class="nav-link">Tarifs</a>
+    <a href="#faq" class="nav-link">FAQ</a>
+    <a href="#contact" class="nav-link">Contact</a>
+</div>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
                 <span></span>
@@ -46,6 +47,58 @@
                 <p class="hero-subtitle">Offrez à votre véhicule une transformation unique grâce à nos services de personnalisation avancée</p>
                 <a href="#contact" class="btn">Réservez maintenant</a>
             <a href="#services" class="btn btn-secondary">Nos services</a>
+            </div>
+        </div>
+    </section>
+     </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Galerie Avant/Après</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=600" alt="Transformation 1" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Peinture Complète</h3>
+                        <p>BMW M3 - Transformation spectaculaire</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600" alt="Transformation 2" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Covering Vinyl Matt</h3>
+                        <p>Audi A4 - Finition premium</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600" alt="Transformation 3" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Kit Carrosserie Sport</h3>
+                        <p>Mercedes C63 - Look agressif</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600" alt="Transformation 4" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Jantes Custom</h3>
+                        <p>Tesla Model 3 - Design futuriste</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600" alt="Transformation 5" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Vitres Teintées</h3>
+                        <p>Range Rover - Élégance et intimité</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600" alt="Transformation 6" class="gallery-image">
+                    <div class="gallery-caption">
+                        <h3>Coating Céramique</h3>
+                        <p>Porsche 911 - Brillance ultime</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -269,7 +322,7 @@
                     </div>
                     <div class="contact-item">
                         <strong>Email:</strong>
-                        <p>roumautopro@gmail.com</p>
+                        <p>roumautopro@gmail.dz</p>
                     </div>
                     <div class="contact-item">
                         <strong>Adresse:</strong>
@@ -282,40 +335,75 @@
                 </div>
 
                 <div class="contact-form-container">
-                    <form id="booking-form" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Nom Complet</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
+                   <form id="booking-form" class="contact-form">
+    <div class="form-group">
+        <label for="name">Nom Complet *</label>
+        <input type="text" id="name" name="name" required>
+    </div>
 
-                        <div class="form-group">
-                            <label for="phone">Numéro de Téléphone</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="phone">Téléphone *</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+        </div>
+    </div>
 
-                        <div class="form-group">
-                            <label for="service">Service Souhaité</label>
-                            <select id="service" name="service" required>
-                                <option value="">Sélectionnez un service</option>
-                                <option value="peinture">Peinture Automobile - 120,000 DZD</option>
-                                <option value="vinyl">Covering Vinyl Complet - 180,000 DZD</option>
-                                <option value="bodykit">Kit Carrosserie - 90,000 DZD</option>
-                                <option value="rims">Jantes Customization - 20,000 DZD/roue</option>
-                                <option value="tint">Vitres Teintées - 15,000 DZD</option>
-                                <option value="lights">Phares/Feux Teintés - 10,000 DZD</option>
-                                <option value="decals">Stickers & Graphics - 13,000 DZD</option>
-                                <option value="ceramic">Coating Céramique - 40,000 DZD</option>
-                                <option value="ppf">PPF Pare-chocs - 55,000 DZD</option>
-                            </select>
-                        </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="model">Modèle Véhicule *</label>
+            <input type="text" id="model" name="model" placeholder="Ex: BMW M3" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Année *</label>
+            <input type="number" id="year" name="year" min="1990" max="2025" placeholder="2020" required>
+        </div>
+    </div>
 
-                        <div class="form-group">
-                            <label for="message">Message (optionnel)</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Décrivez vos besoins spécifiques..."></textarea>
-                        </div>
+    <div class="form-group">
+        <label for="kilometers">Kilométrage</label>
+        <input type="number" id="kilometers" name="kilometers" placeholder="Ex: 50000">
+    </div>
 
-                        <button type="submit" class="submit-button">Réserver Maintenant</button>
-                    </form>
+    <div class="form-group">
+        <label for="service">Service Souhaité *</label>
+        <select id="service" name="service" required>
+            <option value="">Sélectionnez un service</option>
+            <option value="peinture">Peinture Automobile - 120,000 DZD</option>
+            <option value="vinyl">Covering Vinyl Complet - 180,000 DZD</option>
+            <option value="bodykit">Kit Carrosserie - 90,000 DZD</option>
+            <option value="rims">Jantes Customization - 20,000 DZD/roue</option>
+            <option value="tint">Vitres Teintées - 15,000 DZD</option>
+            <option value="lights">Phares/Feux Teintés - 10,000 DZD</option>
+            <option value="decals">Stickers & Graphics - 13,000 DZD</option>
+            <option value="ceramic">Coating Céramique - 40,000 DZD</option>
+            <option value="ppf">PPF Pare-chocs - 55,000 DZD</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Photo de la Voiture ou Design Souhaité</label>
+        <div class="image-upload-wrapper">
+            <input type="file" id="car-image" name="car-image" accept="image/*">
+            <div class="upload-icon">📸</div>
+            <div class="upload-text">
+                <strong>Cliquez pour ajouter une photo</strong>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Format: JPG, PNG (Max 5MB)</p>
+            </div>
+            <img id="image-preview" class="image-preview" alt="Preview">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Message ou Détails Spécifiques</label>
+        <textarea id="message" name="message" rows="4" placeholder="Décrivez vos besoins, couleurs souhaitées, délais, etc."></textarea>
+    </div>
+
+    <button type="submit" class="submit-button">🚀 Réserver Maintenant</button>
+</form>
                 </div>
             </div>
         </div>
@@ -344,7 +432,7 @@
                     <h4>Contact</h4>
                     <ul>
                         <li>+213 555 123 456</li>
-                        <li>roumautopro@gmail.com</li>
+                        <li>roumautopro@gmail.dz</li>
                         <li>Zone Industrielle, Oran</li>
                     </ul>
                 </div>
@@ -381,5 +469,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
